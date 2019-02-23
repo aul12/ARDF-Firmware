@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
-project(Fuchsjagdsender)
+project(ARDF_Firmware)
 
 SET(AVRSTRIP avr-strip)
 SET(OBJCOPY avr-objcopy)
