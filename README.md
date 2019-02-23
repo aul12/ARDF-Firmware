@@ -10,7 +10,7 @@ make
 avrdude -p -t44 -B 10 -c stk500 -U flash:w:ARDF_Firmware.hex:i
 ```
 
-## Fuses
+## Fuses (See: http://www.engbedded.com/fusecalc/)
  * Extended: 0xFE (self programming enabled (not necessary...))
  * High: 0x92 (External Reset enabled, debug wire enabled, isp enabled, watchdog disabled, 
                     eeprom preserve enabled, brown out detection at 2.7V)
