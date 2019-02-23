@@ -10,6 +10,10 @@
 
 #include <stdint.h>
 
+/**
+ * Calculate the timer frequency, prescaler needs to be the actual prescaler value (1,4,8...)
+ * not on off the prescale_t values!
+ */
 #define TIMER1_GET_FREQ(prescaler) ((float)F_CPU/((prescaler)*65536))
 
 /**
@@ -25,6 +29,11 @@ typedef enum {
     PRESCALER_INF = 0x00
 } prescaler_t;
 
+/**
+ * Initialize the timer1 (the 16 bit timer)
+ * @param prescaler a value of prescaler_t representing the prescaler
+ * @param callback a void(void) function which should get called on overflow
+ */
 void timer1_init(prescaler_t prescaler, void (*callback)(void));
 
 #endif //ARDF_FIRMWARE_TIMER16BIT_H

@@ -4,9 +4,9 @@
  * @date 23.02.19
  * @brief Timer16Bit @TODO
  */
+#include "timer1.h"
 
 #include <avr/interrupt.h>
-#include "timer1.h"
 
 void (*callback_funct)(void) = 0;
 
