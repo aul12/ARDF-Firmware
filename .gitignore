@@ -1,0 +1,10 @@
+cmake-build-debug/
+.idea/
+/i2c/makefile.twimaster
+/i2c/i2cmaster.S
+/i2c/doxygen.css
+/i2c/doxygen.png
+/i2c/makefile.i2cmaster
+/i2c/manual__i2cmaster.html
+/i2c/test_i2cmaster.c
+build/
