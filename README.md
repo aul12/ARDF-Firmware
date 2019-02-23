@@ -11,9 +11,10 @@ avrdude -p -t44 -B 10 -c stk500 -U flash:w:ARDF_Firmware.hex:i
 ```
 
 ## Fuses
-```
-TODO
-```
+ * Extended: 0xFE (self programming enabled (not necessary...))
+ * High: 0x92 (External Reset enabled, debug wire enabled, isp enabled, watchdog disabled, 
+                    eeprom preserve enabled, brown out detection at 2.7V)
+ * Low: 0xFF (External Clock, No Clock/8, Fast start (because BOD enabled))
 
 ## Pinout
 | Pin | I/O | Func |
