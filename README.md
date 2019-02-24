@@ -31,3 +31,12 @@ avrdude -p -t44 -B 10 -c stk500 -U flash:w:ARDF_Firmware.hex:i
 | B1  | I   | DIP  |
 | B2  | O   | BUZZER |
 | B3  | NC  | RESET |
+
+## LEDs 
+| # | Meaning |
+| --- | --- |
+| 1 | Is on while the module is sending |
+| 2 | - |
+| 3 | - |
+| 4 | - |
+| 5 | - |

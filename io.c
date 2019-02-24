@@ -25,7 +25,7 @@ bool io_get_filtered_dip(uint8_t num_of_samples) {
         if (GET_DIP) {
             high_count++;
         }
-        _delay_ms(10);
+        _delay_ms(2);
     }
 
     uint8_t thresh = (uint8_t) (num_of_samples / 10);

@@ -31,7 +31,7 @@ void io_init(void);
 /**
  * Estimates an analogue value by calculating an moving average.
  * Then filters the value by using a schmitt-trigger
- * @param num_of_samples the number of samples to take (a sample is taken every 10ms)
+ * @param num_of_samples the number of samples to take (a sample is taken every 2ms)
  * @return a bool representing the state of the switch
  */
 bool io_get_filtered_dip(uint8_t num_of_samples);

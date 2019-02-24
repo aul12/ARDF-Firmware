@@ -20,7 +20,7 @@ SET(CMAKE_CXX_FLAGS ${CXXFLAGS})
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_C_STANDARD 11)
 
-SET(SOURCES main.c timer1.c adc.c io.c)
+SET(SOURCES main.c timer1.c adc.c io.c util.c util.h)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCES})
 
