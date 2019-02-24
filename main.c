@@ -8,8 +8,7 @@
 #include <stdbool.h>
 
 #include "timer1.h"
-
-#define NUM_COUNTS_PER_MINUTE (60/TIMER1_GET_FREQ(1024))
+#include "io.h"
 
 uint8_t sendRequired;
 
@@ -21,7 +20,7 @@ void timer1_handler() {
     }
 }
 
-int main() {
+int main(void) {
     timer1_init(PRESCALER_1024, &timer1_handler);
 
     while (true) {
