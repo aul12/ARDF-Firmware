@@ -2,7 +2,7 @@
  * @file Timer16Bit.h
  * @author paul
  * @date 23.02.19
- * @brief Timer16Bit @TODO
+ * @brief Uses the timer1 (16 bit timer) as an event source
  */
 
 #ifndef ARDF_FIRMWARE_TIMER16BIT_H

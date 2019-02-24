@@ -2,7 +2,7 @@
  * @file adc.h
  * @author paul
  * @date 23.02.19
- * @brief adc @TODO
+ * @brief declaration of the adc library
  */
 
 #ifndef ARDF_FIRMWARE_ADC_H

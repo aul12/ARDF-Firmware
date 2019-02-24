@@ -18,7 +18,7 @@ volatile uint8_t sendRequired;
 volatile uint16_t interval_time = 60; // in seconds
 
 void timer1_handler() {
-    static uint16_t count = 0; //@TODO if the prescaler is 1 we have an oveflow here
+    static uint16_t count = 0; //@WARN if the prescaler is 1 we have an oveflow here
     if(++count > (uint16_t)(interval_time / TIMER1_GET_FREQ(1024))) {
         sendRequired++;
         count = 0;

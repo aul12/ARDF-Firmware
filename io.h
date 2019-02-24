@@ -2,7 +2,7 @@
  * @file io.h
  * @author paul
  * @date 23.02.19
- * @brief io @TODO
+ * @brief implementation of the io library
  */
 
 #ifndef ARDF_FIRMWARE_IO_H

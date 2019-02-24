@@ -2,7 +2,7 @@
  * @file util.c
  * @author paul
  * @date 24.02.19
- * @brief util @TODO
+ * @brief implementation of the utility functions
  */
 
 #include "util.h"
@@ -41,5 +41,5 @@ void util_send_char(char c) {
         return;
     }
 
-    //@TODO
+    //@TODO implement morse code
 }

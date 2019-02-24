@@ -2,7 +2,7 @@
  * @file io.c
  * @author paul
  * @date 24.02.19
- * @brief io @TODO
+ * @brief library for abstraction of all digital io
  */
 
 #include "io.h"

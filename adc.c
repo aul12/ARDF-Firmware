@@ -2,7 +2,7 @@
  * @file adc.c
  * @author paul
  * @date 23.02.19
- * @brief adc @TODO
+ * @brief adc implemetation of the adc library
  */
 
 #include <avr/io.h>

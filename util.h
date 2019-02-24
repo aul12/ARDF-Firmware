@@ -2,7 +2,7 @@
  * @file util.h
  * @author paul
  * @date 24.02.19
- * @brief util @TODO
+ * @brief several utility functions used for io
  */
 
 #ifndef ARDF_FIRMWARE_UTIL_H

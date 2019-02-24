@@ -2,7 +2,7 @@
  * @file Timer16Bit.c
  * @author paul
  * @date 23.02.19
- * @brief Timer16Bit @TODO
+ * @brief implementation of the timer1 library
  */
 #include "timer1.h"
 
