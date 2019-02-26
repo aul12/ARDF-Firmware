@@ -45,7 +45,7 @@ int main(void) {
 
     while (true) {
         if (sendRequired) {
-            util_send_char(send_char, &set_send_out, &_delay_ms);
+            util_send_char(send_char, &set_send_out);
             sendRequired--;
         }
 

@@ -48,10 +48,10 @@ uint8_t util_add_new_measurent(util_quantized_low_pass_t* quantizized_low_pass, 
 /**
  * Modulates the morse code using the send_en pin, this sends the same signal to led1
  * @param c the character, if this is not an alphabetic character nothing will be send
- * @param outputFunc a functor which accepts a boolean and sets an output
- * @param delayFunc a functor which provides a delay in milliseconds
+ * @param output_func a functor which accepts a boolean and sets an output
+ * @param delay_func a functor which provides a delay in milliseconds
  */
-void util_send_char(char c, void (*outputFunc)(bool), void (*delayFunc)(double));
+void util_send_char(char c, void (*output_func)(bool));
 
 
 #endif //ARDF_FIRMWARE_UTIL_H
