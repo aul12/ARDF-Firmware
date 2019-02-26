@@ -38,10 +38,19 @@ void set_send_out(bool state) {
 int main(void) {
     io_init();
     timer1_init(PRESCALER_1024, &timer1_handler);
-    util_quantized_low_pass_t char_filter = util_init_quantizized_low_pass(5, 10, 1023);
-    util_quantized_low_pass_t interval_filter = util_init_quantizized_low_pass(5, 10, 1023);
 
-    char send_char = 'A';
+    // Possible intervals between sending in seconds
+    uint16_t interval_times[] = {10, 20, 30, 45, 60, 120, 600};
+    // Possible chars to be send
+    char send_chars[] = {'A', 'E', 'I', 'O', 'U'};
+
+    util_quantized_low_pass_t char_filter =
+            util_init_quantizized_low_pass(sizeof(interval_times)/ sizeof(interval_times[0]), 10, 1024);
+    util_quantized_low_pass_t interval_filter =
+            util_init_quantizized_low_pass(sizeof(send_chars)/ sizeof(send_chars[0]), 10, 1024);
+
+
+    char send_char = send_chars[0];
 
     while (true) {
         if (sendRequired) {
@@ -53,26 +62,10 @@ int main(void) {
 
         if (dip_position) { // Interval
             uint8_t interval_step = util_add_new_measurent(&interval_filter, adc_read_synchr(2));
-            switch (interval_step) {
-                case 0:
-                    interval_time = 10;
-                    break;
-                    //@TODO handle all values
-                default:
-                    interval_time = 60;
-                    break;
-            }
+            interval_time = interval_times[interval_step];
         } else { // Buchstaben
             uint8_t char_step = util_add_new_measurent(&char_filter, adc_read_synchr(2));
-            switch (char_step) {
-                case 0:
-                    send_char = 'A';
-                    break;
-                    //@TODO handle all values
-                default:
-                    send_char = 'B';
-                    break;
-            }
+            send_char = send_chars[char_step];
         }
     }
 }
