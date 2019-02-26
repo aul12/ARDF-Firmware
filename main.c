@@ -14,10 +14,10 @@
 #include "adc.h"
 #include "util.h"
 
-volatile uint8_t sendRequired;
-volatile uint16_t interval_time = 60; // in seconds
+volatile uint8_t sendRequired = 0;
+volatile uint16_t interval_time; // in seconds
 
-void timer1_handler() {
+void timer1_handler(void) {
     static uint16_t count = 0; //@WARN if the prescaler is 1 we have an oveflow here
     if(++count > (uint16_t)(interval_time / TIMER1_GET_FREQ(1024))) {
         sendRequired++;
@@ -49,8 +49,9 @@ int main(void) {
     util_quantized_low_pass_t interval_filter =
             util_init_quantizized_low_pass(sizeof(send_chars)/ sizeof(send_chars[0]), 10, 1024);
 
-
+    //@TODO read values out of the eeprom
     char send_char = send_chars[0];
+    interval_time = interval_times[0];
 
     while (true) {
         if (sendRequired) {
@@ -60,10 +61,11 @@ int main(void) {
 
         bool dip_position = io_get_filtered_dip(50);
 
+        //@TODO save the intervall time if it changed (and only if it changed)
         if (dip_position) { // Interval
             uint8_t interval_step = util_add_new_measurent(&interval_filter, adc_read_synchr(2));
             interval_time = interval_times[interval_step];
-        } else { // Buchstaben
+        } else { // Character
             uint8_t char_step = util_add_new_measurent(&char_filter, adc_read_synchr(2));
             send_char = send_chars[char_step];
         }
