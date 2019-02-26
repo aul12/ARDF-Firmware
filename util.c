@@ -6,6 +6,7 @@
  */
 
 #include "util.h"
+#include "adc.h"
 
 #include <util/delay.h>
 
@@ -22,6 +23,10 @@
 
 #define LONG PULSE(3*DIT, DIT)
 #define SHORT PULSE(DIT, 2*DIT)
+
+#define R_TOP 82
+#define R_BOTTOM 47
+#define VCC 5
 
 util_quantized_low_pass_t util_init_quantizized_low_pass(uint8_t steps,
         uint8_t low_pass_weight, uint16_t max_val) {
@@ -86,4 +91,11 @@ void util_send_char(char c, void (*output_func)(bool)) {
         case 'z': LONG LONG SHORT SHORT break;
         default:  break;
     }
+}
+
+uint16_t util_battery_voltage_milli_volt(void) {
+    static uint16_t last_voltage = 12600;
+    uint16_t voltage = adc_read_synchr(1) * VCC / R_BOTTOM * (R_TOP + R_BOTTOM);
+    last_voltage = (voltage + last_voltage * 9) / 10;
+    return last_voltage;
 }

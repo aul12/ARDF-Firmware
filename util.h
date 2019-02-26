@@ -49,9 +49,14 @@ uint8_t util_add_new_measurent(util_quantized_low_pass_t* quantizized_low_pass, 
  * Modulates the morse code using the send_en pin, this sends the same signal to led1
  * @param c the character, if this is not an alphabetic character nothing will be send
  * @param output_func a functor which accepts a boolean and sets an output
- * @param delay_func a functor which provides a delay in milliseconds
  */
 void util_send_char(char c, void (*output_func)(bool));
+
+/**
+ * This measures the battery, calculates the voltage and filters it using a low pass filter.
+ * @return the voltage in milli volt at the battery
+ */
+uint16_t util_battery_voltage_milli_volt(void);
 
 
 #endif //ARDF_FIRMWARE_UTIL_H

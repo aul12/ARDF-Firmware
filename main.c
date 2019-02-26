@@ -54,7 +54,7 @@ int main(void) {
     interval_time = interval_times[0];
 
     while (true) {
-        if (sendRequired) {
+        if (sendRequired > 0) {
             util_send_char(send_char, &set_send_out);
             sendRequired--;
         }
@@ -68,6 +68,10 @@ int main(void) {
         } else { // Character
             uint8_t char_step = util_add_new_measurent(&char_filter, adc_read_synchr(2));
             send_char = send_chars[char_step];
+        }
+
+        if (util_battery_voltage_milli_volt() < 10500) {
+            //@TODO Buzzer
         }
     }
 }
