@@ -32,7 +32,7 @@ uint8_t util_add_new_measurent(util_quantized_low_pass_t *quantizized_low_pass, 
     return quantizized_low_pass->val;
 }
 
-void util_send_char(char c) {
+void util_send_char(char c, void (*outputFunc)(bool), void (*delayFunc)(double)) {
     if (c >= 'A' && c <= 'Z') {
         c = (char) (c - 'A' + 'a'); // Convert to lower case
     }

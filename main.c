@@ -25,6 +25,16 @@ void timer1_handler() {
     }
 }
 
+void set_send_out(bool state) {
+    if (state) {
+        SET_SEND_EN;
+        SET_LED(1);
+    } else {
+        CLEAR_SEND_EN;
+        CLEAR_LED(1);
+    }
+}
+
 int main(void) {
     io_init();
     timer1_init(PRESCALER_1024, &timer1_handler);
@@ -35,7 +45,7 @@ int main(void) {
 
     while (true) {
         if (sendRequired) {
-            util_send_char(send_char);
+            util_send_char(send_char, &set_send_out, &_delay_ms);
             sendRequired--;
         }
 
