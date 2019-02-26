@@ -8,6 +8,7 @@
 #include "util.h"
 #include "adc.h"
 
+#include <stdlib.h>
 #include <util/delay.h>
 
 /*

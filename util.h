@@ -10,7 +10,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "stdlib.h"
 
 /*
  * To decrease the write cycles on the eeprom it is of great importance to remove all noise

@@ -2,12 +2,7 @@
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 #pragma ide diagnostic ignored "bugprone-incorrect-roundings"
 
-#include <stdlib.h>
 #include <stdbool.h>
-
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
 
 #include "timer1.h"
 #include "io.h"
