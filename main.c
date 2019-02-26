@@ -3,12 +3,16 @@
 #pragma ide diagnostic ignored "bugprone-incorrect-roundings"
 
 #include <stdbool.h>
+#include <avr/eeprom.h>
 
 #include "timer1.h"
 #include "io.h"
 #include "adc.h"
 #include "util.h"
 #include "pwm0.h"
+
+#define CHAR_ADDRESS ((uint8_t*)0)
+#define INTERVAL_ADDRESS ((uint8_t*)1)
 
 volatile uint8_t sendRequired = 0;
 volatile uint16_t interval_time; // in seconds
@@ -46,9 +50,8 @@ int main(void) {
     util_quantized_low_pass_t interval_filter =
             util_init_quantizized_low_pass(sizeof(send_chars)/ sizeof(send_chars[0]), 10, 1024);
 
-    //@TODO read values out of the eeprom
-    char send_char = send_chars[0];
-    interval_time = interval_times[0];
+    char send_char = send_chars[eeprom_read_byte(CHAR_ADDRESS)];
+    interval_time = interval_times[eeprom_read_byte(INTERVAL_ADDRESS)];
 
     while (true) {
         if (sendRequired > 0) {
@@ -58,13 +61,14 @@ int main(void) {
 
         bool dip_position = io_get_filtered_dip(50);
 
-        //@TODO save the intervall time if it changed (and only if it changed)
         if (dip_position) { // Interval
             uint8_t interval_step = util_add_new_measurent(&interval_filter, adc_read_synchr(2));
             interval_time = interval_times[interval_step];
+            eeprom_update_byte(INTERVAL_ADDRESS, interval_step);
         } else { // Character
             uint8_t char_step = util_add_new_measurent(&char_filter, adc_read_synchr(2));
             send_char = send_chars[char_step];
+            eeprom_update_byte(CHAR_ADDRESS, char_step);
         }
 
         // Buzzer for the battery (approx 1.7 kHz)
