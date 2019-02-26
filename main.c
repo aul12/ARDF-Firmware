@@ -13,6 +13,7 @@
 #include "io.h"
 #include "adc.h"
 #include "util.h"
+#include "pwm0.h"
 
 volatile uint8_t sendRequired = 0;
 volatile uint16_t interval_time; // in seconds
@@ -37,6 +38,7 @@ void set_send_out(bool state) {
 
 int main(void) {
     io_init();
+    pwm0_init();
     timer1_init(PRESCALER_1024, &timer1_handler);
 
     // Possible intervals between sending in seconds
@@ -70,8 +72,11 @@ int main(void) {
             send_char = send_chars[char_step];
         }
 
+        // Buzzer for the battery (approx 1.7 kHz)
         if (util_battery_voltage_milli_volt() < 10500) {
-            //@TODO Buzzer
+            pwm0_set(127);
+        } else {
+            pwm0_set(0);
         }
     }
 }
