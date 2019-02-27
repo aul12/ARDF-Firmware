@@ -9,10 +9,9 @@
 #include "pwm0.h"
 
 void pwm0_init(void) {
-    TCCR0A = 0xC0; // OC0A as output, normal mode
-    TCCR0B = 0x02; // No force, prescaler 8 (=> ~1.7kHz)
+    TCCR0A = 0x83; // OC0A as output, normal mode (1000 0011)
+    TCCR0B = 0x02; // No force, prescaler 8 (=> ~1.7kHz) (0000 0010)
     TIMSK0 = 0x00; // No interrupts
-
 
     TCNT0 = 0; // Set the counter to 0
     pwm0_set(0);

@@ -10,7 +10,7 @@
 
 void (*callback_funct)(void) = 0;
 
-ISR(TIM1_OVF_vect) {
+ISR (TIM1_OVF_vect) {
     if (callback_funct != 0) {
         (*callback_funct)();
     }

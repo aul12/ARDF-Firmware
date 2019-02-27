@@ -11,9 +11,10 @@
 uint16_t adc_read_synchr(uint8_t adcChannel) {
     ADMUX = 0x00; //Vcc used as Vref
     ADMUX |= adcChannel & 0x3F; // Mask the lower 6 bits
-    ADCSRA = 0xC0; // Enable ADC and start the conversion, disable interrupts, sets the interrupt flag to 0
     ADCSRB = 0x00; // Right adjusted data, no auto trigger
+    ADCSRA = 0xC0; // Enable ADC and start the conversion, disable interrupts, sets the interrupt flag to 0
 
-    while (!((ADCSRA >> 4) & 0x01)); // Wait for the interrupt flag to be set
+    while (!((ADCSRA >> 6) & 0x01)); // Wait for the conversion to be finished
+
     return ADC;
 }

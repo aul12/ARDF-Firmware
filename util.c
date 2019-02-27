@@ -98,6 +98,5 @@ void util_send_char(char c, void (*output_func)(bool)) {
 uint16_t util_battery_voltage_milli_volt(void) {
     static uint16_t last_voltage = 12600;
     uint16_t voltage = adc_read_synchr(1) * VCC / R_BOTTOM * (R_TOP + R_BOTTOM);
-    last_voltage = (voltage + last_voltage * 9) / 10;
-    return last_voltage;
+    return last_voltage = (voltage + last_voltage * 9) / 10;
 }

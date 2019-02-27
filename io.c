@@ -30,9 +30,9 @@ bool io_get_filtered_dip(uint8_t num_of_samples) {
 
     uint8_t thresh = (uint8_t) (num_of_samples / 10);
 
-    if (high_count < thresh) {
+    if (high_count <= thresh) {
         return (last_val = false);
-    } else if (high_count > (num_of_samples - thresh)){
+    } else if (high_count >= (num_of_samples - thresh)){
         return (last_val = true);
     } else {
         return last_val;
