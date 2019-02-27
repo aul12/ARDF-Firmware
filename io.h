@@ -19,10 +19,6 @@
 #define SET_LED(num) (PORTA |= (0x01 << ((num)+ 2)))
 #define CLEAR_LED(num) (PORTA &= ~(0x01 << ((num) + 2)))
 
-// Enabled / Disable the buzzer
-#define SET_BUZZER (PORTB |= (0x01 << 2))
-#define CLEAR_BUZZER (PORTB &= ~(0x01 << 2))
-
 /**
  * Initialize the gpio-pins as input/output and enable the required pull up
  */
@@ -35,5 +31,13 @@ void io_init(void);
  * @return a bool representing the state of the switch
  */
 bool io_get_filtered_dip(uint8_t num_of_samples);
+
+/**
+ * Shows a binary number on the leds
+ * @param led_start the first led to use, this is the LSB
+ * @param num_of_leds the number of leds to use
+ * @param val the value to show, if this value can't be displayed only the lower bits are used.
+ */
+void io_led_show_binary(uint8_t led_start, uint8_t num_of_leds, uint8_t val);
 
 #endif //ARDF_FIRMWARE_IO_H

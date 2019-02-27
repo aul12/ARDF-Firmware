@@ -38,3 +38,14 @@ bool io_get_filtered_dip(uint8_t num_of_samples) {
         return last_val;
     }
 }
+
+void io_led_show_binary(uint8_t led_start, uint8_t num_of_leds, uint8_t val) {
+    for (uint8_t led = 0; led < num_of_leds; ++led) {
+        uint8_t bit = (uint8_t) ((val >> led) & 0x01);
+        if (bit) {
+            SET_LED(led + led_start);
+        } else {
+            CLEAR_LED(led+led_start);
+        }
+    }
+}

@@ -72,10 +72,12 @@ int main(void) {
             uint8_t interval_step = util_add_new_measurent(&interval_filter, adc_read_synchr(2));
             interval_time = interval_times[interval_step];
             eeprom_update_byte(INTERVAL_ADDRESS, interval_step);
+            io_led_show_binary(2, 3, interval_step);
         } else { // Character
             uint8_t char_step = util_add_new_measurent(&char_filter, adc_read_synchr(2));
             send_char = send_chars[char_step];
             eeprom_update_byte(CHAR_ADDRESS, char_step);
+            io_led_show_binary(2, 3, char_step);
         }
 
         // Buzzer for the battery (approx 1.7 kHz)
