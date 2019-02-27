@@ -15,11 +15,11 @@
 #define INTERVAL_ADDRESS ((uint8_t*)1)
 
 volatile uint8_t sendRequired = 0;
-volatile uint16_t interval_time; // in seconds
+volatile uint16_t interval_time = 60; // in seconds
 
 void timer1_handler(void) {
-    static uint16_t count = 0; //@WARN if the prescaler is 1 we have an oveflow here
-    if(++count / TIMER1_GET_FREQ(1024) > interval_time) {
+    static uint16_t count = 0;
+    if(++count / TIMER1_GET_FREQ(1) > interval_time) {
         sendRequired++;
         count = 0;
     }
@@ -45,12 +45,14 @@ int main(void) {
     }
 
     pwm0_init();
-    timer1_init(PRESCALER_1024, &timer1_handler);
+    timer1_init(PRESCALER_1, &timer1_handler);
 
-    // Possible intervals between sending in seconds
-    uint16_t interval_times[] = {10, 20, 30, 45, 60, 120, 600};
-    // Possible chars to be send
-    char send_chars[] = {'A', 'E', 'I', 'O', 'U'};
+    // Possible intervals between sending in seconds (don't try to add 10 minutes here, the absolute maximum is 9:99
+    // seriously, this is no fucked up decimal calculation, at 1200 seconds there is simply a overflow in the ISR)
+    uint16_t interval_times[] = {10, 20, 30, 45, 60, 120, 240, 600};
+    // Possible chars to be send (at the moment all vocals and all character with an encoding of greater or less than
+    // two tones)
+    char send_chars[] = {'A', 'E', 'I', 'O', 'U', 'T', 'M', 'N'};
 
     util_quantized_low_pass_t char_filter =
             util_init_quantizized_low_pass(sizeof(interval_times)/ sizeof(interval_times[0]), 10, 1024);
