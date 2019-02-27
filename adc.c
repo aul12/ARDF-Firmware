@@ -14,7 +14,7 @@ uint16_t adc_read_synchr(uint8_t adcChannel) {
     ADCSRB = 0x00; // Right adjusted data, no auto trigger
     ADCSRA = 0xC0; // Enable ADC and start the conversion, disable interrupts, sets the interrupt flag to 0
 
-    while (!((ADCSRA >> 6) & 0x01)); // Wait for the conversion to be finished
+    while (ADCSRA & (0x01 << 6)); // Wait for the conversion to be finished
 
     return ADC;
 }

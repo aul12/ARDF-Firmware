@@ -37,6 +37,7 @@ void set_send_out(bool state) {
 int main(void) {
     io_init();
 
+    PRR = 0x00; // Disable all power reduction
     if (MCUSR & 0x0C) { // Watchdog or Brownout
         SET_LED(5);
     } else {
