@@ -36,7 +36,9 @@ avrdude -p -t44 -B 10 -c stk500 -U flash:w:ARDF_Firmware.hex:i
 | # | Meaning |
 | --- | --- |
 | 1 | Is on while the module is sending |
-| 2 | - |
-| 3 | - |
-| 4 | - |
-| 5 | - |
+| 2 | Selection 0 |
+| 3 | Selection 1 |
+| 4 | Selection 2 |
+| 5 | Brownout, Watchdog or internal error |
+
+Selection: Binary representation of the selection on the potentiometer (LED 2 is the LSB)
