@@ -2,7 +2,7 @@
  * @file pwm0.h
  * @author paul
  * @date 26.02.19
- * @brief pwm0 @TODO
+ * @brief uses the timer 0 to output a pwm signal of 1.7kHz onto PB2
  */
 
 #ifndef ARDF_FIRMWARE_PWM0_H

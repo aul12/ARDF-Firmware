@@ -1,6 +1,5 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-#pragma ide diagnostic ignored "bugprone-incorrect-roundings"
 
 #include <stdbool.h>
 #include <avr/eeprom.h>
@@ -90,5 +89,3 @@ int main(void) {
         }
     }
 }
-
-#pragma clang diagnostic pop

@@ -2,7 +2,7 @@
  * @file pwm0.c
  * @author paul
  * @date 26.02.19
- * @brief pwm0 @TODO
+ * @brief implementation of pwm0
  */
 
 #include <avr/io.h>
