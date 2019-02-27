@@ -7,6 +7,7 @@
 
 #include "util.h"
 #include "adc.h"
+#include "io.h"
 
 #include <stdlib.h>
 #include <util/delay.h>
@@ -90,7 +91,7 @@ void util_send_char(char c, void (*output_func)(bool)) {
         case 'x': LONG SHORT SHORT LONG break;
         case 'y': LONG SHORT LONG LONG break;
         case 'z': LONG LONG SHORT SHORT break;
-        default:  break;
+        default:  SET_LED(5); break; // We really shouldn't be here!
     }
 }
 

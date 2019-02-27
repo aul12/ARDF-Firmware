@@ -19,7 +19,7 @@ volatile uint16_t interval_time; // in seconds
 
 void timer1_handler(void) {
     static uint16_t count = 0; //@WARN if the prescaler is 1 we have an oveflow here
-    if(++count > (uint16_t)(interval_time / TIMER1_GET_FREQ(1024))) {
+    if(++count / TIMER1_GET_FREQ(1024) > interval_time) {
         sendRequired++;
         count = 0;
     }
@@ -37,6 +37,13 @@ void set_send_out(bool state) {
 
 int main(void) {
     io_init();
+
+    if (MCUSR & 0x0C) { // Watchdog or Brownout
+        SET_LED(5);
+    } else {
+        CLEAR_LED(5);
+    }
+
     pwm0_init();
     timer1_init(PRESCALER_1024, &timer1_handler);
 
