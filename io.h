@@ -16,8 +16,8 @@
 #define CLEAR_SEND_EN (PORTA &= ~0x01)
 
 // Set the LED, the first LED is number 1
-#define SET_LED(num) (PORTA |= (0x01 << ((num)+ 2)))
-#define CLEAR_LED(num) (PORTA &= ~(0x01 << ((num) + 2)))
+#define SET_LED(num) (PORTA |= (0x01 << (8 - (num))))
+#define CLEAR_LED(num) (PORTA &= ~(0x01 << (8 - (num))))
 
 /**
  * Initialize the gpio-pins as input/output and enable the required pull up
