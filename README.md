@@ -1,4 +1,8 @@
+[![Build Status](https://travis-ci.org/aul12/ARDF-Firmware.svg?branch=master)](https://travis-ci.org/aul12/ARDF-Firmware)
 # ARDF-Firmware
+## Latest Build (Current Master Branch)
+[ARDF_Firmware.hex](http://aul12.github.io/ARDF-Firmware/ARDF_Firmware.hex)
+
 ## Build
 ```
 cmake .
