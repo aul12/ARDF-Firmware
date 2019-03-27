@@ -1,0 +1,20 @@
+sudo: required
+dist: trusty
+before_install:
+  - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends cmake make build-essential avr-libc binutils-avr gcc-avr
+
+script:
+  - mkdir output
+  - mkdir build && cd build
+  - cmake ..
+  - make -j$(nproc)
+  - cp ARDF_Firmware.hex ../output/
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  local-dir: output
+  on:
+    branch: master
